@@ -31,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario buscarUsuarioPorId(Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        Optional<Usuario> usuario = usuarioRepository.findById(id); //optional pois pode nao retornar a entidade
         return usuario.orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
