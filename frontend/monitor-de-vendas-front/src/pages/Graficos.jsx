@@ -5,7 +5,7 @@ import "./Graficos.css";
 
 const chartInstances = new Map();
 
-function Graficos({ identificador, type }) {
+function Graficos({ identificador = "graficoPadrao", type }) {
     const [dados, setDados] = useState({ datas: [], reservas: [] });
 
     useEffect(() => {
@@ -13,6 +13,11 @@ function Graficos({ identificador, type }) {
     }, []);
 
     useEffect(() => {
+        if (!identificador) {
+            console.warn("Nenhum identificador foi passado para o componente Graficos.");
+            return;
+        }
+
         if (dados.datas.length > 0) {
             createGraph(identificador, type, dados);
         }
@@ -20,7 +25,7 @@ function Graficos({ identificador, type }) {
 
     async function fetchData() {
         try {
-            const token = localStorage.getItem("token"); // Pega o token armazenado
+            const token = localStorage.getItem("token");
             if (!token) {
                 console.error("Token JWT não encontrado. Faça login primeiro.");
                 return;
@@ -32,7 +37,6 @@ function Graficos({ identificador, type }) {
                 },
             });
 
-            // Mapeia os dados para os gráficos
             const datas = response.data.map((venda) => venda.dataVenda);
             const reservas = response.data.map((venda) => venda.quantidadeVendida);
 
@@ -41,6 +45,8 @@ function Graficos({ identificador, type }) {
             console.error("Erro ao buscar dados da API:", error);
         }
     }
+
+    console.log("Identificador recebido:", identificador);
 
     return (
         <div className="graph-container">

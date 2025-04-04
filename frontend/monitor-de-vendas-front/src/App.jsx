@@ -6,7 +6,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/graficos" element={<Graficos />} />
+      <Route
+        path="/graficos"
+        element={<Graficos identificador="grafico1" type="bar" />}
+      />
     </Routes>
   );
 }
