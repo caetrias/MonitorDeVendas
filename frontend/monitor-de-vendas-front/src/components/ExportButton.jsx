@@ -4,12 +4,14 @@ function ExportButton({ data }) {
 
         let csv = "Data;Reservas;Valor Total (R$)\n";
         for (let i = 0; i < data.datas.length; i++) {
-            const dataFormatada = new Date(data.datas[i]).toLocaleDateString("pt-BR"); // <-- formatando a data
+            // Converte para a data local correta
+            const dataFormatada = new Date(data.datas[i] + "T00:00:00").toLocaleDateString("pt-BR");
+
             const linha = `${dataFormatada};${data.reservas[i]};${data.valores[i]}`;
             csv += linha + "\n";
         }
 
-        console.log("CSV gerado:\n", csv); 
+        console.log("CSV gerado:\n", csv); // Debug
 
         const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);

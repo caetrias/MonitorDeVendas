@@ -6,7 +6,8 @@ const chartInstances = new Map();
 function ChartWrapper({ identificador, type = "bar", data, titulo }) {
     useEffect(() => {
         if (data && data.datas?.length > 0) {
-            createGraph(identificador, type, data, titulo);
+            const sortedData = sortDataChronologically(data);
+            createGraph(identificador, type, sortedData, titulo);
         }
     }, [data, identificador, type, titulo]);
 
@@ -16,6 +17,18 @@ function ChartWrapper({ identificador, type = "bar", data, titulo }) {
             <canvas id={identificador} className="graph-canvas" />
         </div>
     );
+}
+
+function sortDataChronologically(data) {
+    const sortedIndices = data.datas.map((date, index) => ({ date, index }))
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
+        .map(item => item.index);
+
+    return {
+        datas: sortedIndices.map(i => data.datas[i]),
+        reservas: sortedIndices.map(i => data.reservas[i]),
+        valores: sortedIndices.map(i => data.valores[i]),
+    };
 }
 
 function createGraph(identificador, type, data, titulo) {
