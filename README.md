@@ -12,7 +12,6 @@ Este é um projeto Full Stack desenvolvido com foco na construção de uma aplic
 - **Spring Boot**: Framework Java que facilita o desenvolvimento de APIs RESTful com uma estrutura robusta e de fácil manutenção.
 - **Spring Security + JWT**: Implementação de autenticação segura utilizando tokens JWT.
 - **Banco de dados H2**: Banco em memória para testes rápidos e simples.
-- **Lombok**: Reduz a verbosidade do código com anotações práticas.
 
 ### 💻 Front-End (React)
 
