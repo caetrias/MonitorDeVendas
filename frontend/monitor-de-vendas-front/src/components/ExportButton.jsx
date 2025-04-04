@@ -26,7 +26,7 @@ function ExportButton({ data }) {
 
     return (
         <button onClick={handleExport} style={{ marginTop: "1rem" }}>
-            Exportar CSV
+            Baixar Dados dos Gráficos (CSV)
         </button>
     );
 }

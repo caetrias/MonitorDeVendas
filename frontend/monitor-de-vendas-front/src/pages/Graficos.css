@@ -26,3 +26,40 @@
     width: 100% !important;
     height: 40vh !important;
 }
+
+button {
+    padding: 0.5rem 1rem;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+background-color: #1c86ee;
+}
+
+form input[type="date"] {
+padding: 0.4rem;
+border-radius: 5px;
+border: 1px solid #ccc;
+}
+
+.voltar-btn {
+    margin-bottom: 1rem;
+    padding: 0.4rem 1rem;
+    background-color: #444;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.voltar-btn:hover {
+background-color: #666;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useVendas from "../hooks/useVendas";
 import ChartWrapper from "../components/ChartWrapper";
 import DateFilter from "../components/DateFilter";
@@ -8,6 +9,14 @@ import "./Graficos.css";
 function Graficos() {
     const [filtro, setFiltro] = useState({ start: null, end: null });
     const dados = useVendas(filtro.start, filtro.end);
+
+
+    const navigate = useNavigate();
+
+    const handleVoltar = () => {
+        navigate("/");
+    };
+
 
     const handleFiltro = (start, end) => {
         setFiltro({ start, end });
@@ -34,7 +43,11 @@ function Graficos() {
                 />
             </div>
 
-            <ExportButton data={dados} />
+            <ExportButton data={dados} /><br/><br/>
+            <button onClick={handleVoltar} className="voltar-btn">
+                ← Voltar ao Login
+            </button>
+
         </div>
     );
 }
