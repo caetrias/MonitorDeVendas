@@ -27,6 +27,14 @@ public class Venda {
 
     public Venda() {} //Exigencia do JPA
 
+    public Venda(Long id, String nomeProduto, int quantidadeVendida, LocalDate dataVenda, BigDecimal valorTotal) {
+        this.id = id;
+        this.nomeProduto = nomeProduto;
+        this.quantidadeVendida = quantidadeVendida;
+        this.dataVenda = dataVenda;
+        this.valorTotal = valorTotal;
+    }
+
     public Venda(String nomeProduto, int quantidadeVendida, LocalDate dataVenda, BigDecimal valorTotal) {
         this.nomeProduto = nomeProduto;
         this.quantidadeVendida = quantidadeVendida;
