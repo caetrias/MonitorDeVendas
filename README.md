@@ -17,7 +17,7 @@ Este é um projeto Full Stack desenvolvido com foco na construção de uma aplic
 
 - **React.js**: Biblioteca JavaScript para construção de interfaces declarativas e reativas.
 - **Axios**: Cliente HTTP para comunicação com a API.
-- **Chart.js** (via `react-chartjs-2`): Criação de gráficos interativos e dinâmicos.
+- **Chart.js**: Criação de gráficos interativos e dinâmicos.
 - **React Router Dom**: Controle de rotas entre páginas da aplicação.
 
 ---
@@ -28,14 +28,14 @@ Este é um projeto Full Stack desenvolvido com foco na construção de uma aplic
 
 - Java 17+
 - Node.js 18+
-- NPM ou Yarn
+- NPM
 - Git
 
 ### 🔙 Back-End
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/caetrias/MonitorDeVendas.git
 
 # Acesse a pasta do back-end
 cd backend/MonitorDeVendasAPI
