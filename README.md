@@ -1,6 +1,7 @@
 # 📊 Dashboard de Vendas - Projeto Full Stack
 
-Este é um projeto Full Stack desenvolvido como parte de um desafio técnico para uma vaga de Engenharia de Software. A aplicação exibe gráficos interativos com base nos dados de vendas armazenados em uma API REST.
+Este é um projeto Full Stack desenvolvido com foco na construção de uma aplicação interativa para visualização de dados de vendas. A aplicação exibe gráficos dinâmicos gerados a partir de uma API REST, permitindo análises visuais de desempenho ao longo do tempo.
+
 
 ---
 
