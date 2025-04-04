@@ -6,10 +6,25 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+
       <Route
         path="/graficos"
-        element={<Graficos identificador="grafico1" type="bar" />}
+        element={
+          <>
+            <Graficos
+              identificador="grafico1"
+              type="bar"
+              titulo="Quantidade de Reservas por Dia"
+            />
+            <Graficos
+              identificador="grafico2"
+              type="line"
+              titulo="Evolução de Vendas (R$) ao Longo do Tempo"
+            />
+          </>
+        }
       />
+      
     </Routes>
   );
 }

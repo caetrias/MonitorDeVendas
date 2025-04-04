@@ -5,23 +5,18 @@ import "./Graficos.css";
 
 const chartInstances = new Map();
 
-function Graficos({ identificador = "graficoPadrao", type }) {
-    const [dados, setDados] = useState({ datas: [], reservas: [] });
+function Graficos({ identificador, type = "bar", titulo = "Reservas por Dia" }) {
+    const [dados, setDados] = useState({ datas: [], valores: [], reservas: [] });
 
     useEffect(() => {
         fetchData();
     }, []);
 
     useEffect(() => {
-        if (!identificador) {
-            console.warn("Nenhum identificador foi passado para o componente Graficos.");
-            return;
-        }
-
         if (dados.datas.length > 0) {
-            createGraph(identificador, type, dados);
+            createGraph(identificador, type, dados, titulo);
         }
-    }, [dados, identificador, type]);
+    }, [dados, identificador, type, titulo]);
 
     async function fetchData() {
         try {
@@ -39,24 +34,23 @@ function Graficos({ identificador = "graficoPadrao", type }) {
 
             const datas = response.data.map((venda) => venda.dataVenda);
             const reservas = response.data.map((venda) => venda.quantidadeVendida);
+            const valores = response.data.map((venda) => venda.valorTotal);
 
-            setDados({ datas, reservas });
+            setDados({ datas, reservas, valores });
         } catch (error) {
             console.error("Erro ao buscar dados da API:", error);
         }
     }
 
-    console.log("Identificador recebido:", identificador);
-
     return (
         <div className="graph-container">
-            <h2 className="graph-title">Reservas por Dia</h2>
+            <h2 className="graph-title">{titulo}</h2>
             <canvas id={identificador} className="graph-canvas" />
         </div>
     );
 }
 
-function createGraph(identificador, type, data) {
+function createGraph(identificador, type, data, titulo) {
     const ctx = document.getElementById(identificador);
     if (!ctx) {
         console.error(`Canvas com id "${identificador}" não encontrado.`);
@@ -67,21 +61,24 @@ function createGraph(identificador, type, data) {
         chartInstances.get(identificador).destroy();
     }
 
+    const chartData = {
+        labels: data.datas,
+        datasets: [
+            {
+                label: titulo,
+                data: type === "line" ? data.valores : data.reservas,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 2,
+                fill: false,
+                tension: 0.3,
+            },
+        ],
+    };
+
     const newChart = new Chart(ctx, {
         type,
-        data: {
-            labels: data.datas,
-            datasets: [
-                {
-                    label: "Reservas por Dia",
-                    data: data.reservas,
-                    backgroundColor: "rgba(255, 99, 132, 0.2)",
-                    borderColor: "rgba(255, 99, 132, 1)",
-                    borderWidth: 2,
-                    fill: false,
-                },
-            ],
-        },
+        data: chartData,
         options: {
             responsive: true,
             maintainAspectRatio: true,
@@ -93,7 +90,7 @@ function createGraph(identificador, type, data) {
                     },
                     title: {
                         display: true,
-                        text: "Quantidade de Reservas",
+                        text: type === "line" ? "Valor Total (R$)" : "Quantidade de Reservas",
                         color: "#ffffff",
                     },
                 },
